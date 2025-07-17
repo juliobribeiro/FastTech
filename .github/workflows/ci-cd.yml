@@ -14,8 +14,12 @@ on:
      
 
 jobs:
-  build-test-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: FastTech
 
     steps:
       - name: Checkout do codigo
@@ -36,7 +40,7 @@ jobs:
         run: dotnet test tests/FastTech.Tests/FastTech.Tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Build da imagem Docker
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/fasttech-api:latest FastTechCore/FastTech.Api
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/fasttech-api:latest ./FastTechCore/FastTech.Api
 
       - name: Login no Docker Hub
         uses: docker/login-action@v3
