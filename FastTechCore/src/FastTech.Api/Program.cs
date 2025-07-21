@@ -29,6 +29,7 @@ using System.Globalization;
 using System.Reflection;
 using static FastTech.Domain.Constants.AppConstants;
 
+
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 
